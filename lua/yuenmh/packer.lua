@@ -64,6 +64,8 @@ require('packer').startup(function(use)
 
     use 'github/copilot.vim'
 
+    use 'nvim-treesitter/nvim-treesitter-context'
+
     -- put all plugins before this
     -- for bootstrapping
     if packer_bootstrap then
