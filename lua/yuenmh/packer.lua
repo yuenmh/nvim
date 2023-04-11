@@ -69,4 +69,4 @@ require('packer').startup(function(use)
     end
 end)
 
-return true
+return not packer_bootstrap
