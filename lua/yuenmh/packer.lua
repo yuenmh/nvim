@@ -28,6 +28,7 @@ require('packer').startup(function(use)
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
+        commit = 'a82501244a',
     }
 
     use 'nvim-treesitter/playground'
