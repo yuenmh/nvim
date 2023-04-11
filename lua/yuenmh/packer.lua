@@ -1,5 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- bootstrapping snippet from https://github.com/wbthomason/packer.nvim#bootstrapping
 local ensure_packer = function()
     local fn = vim.fn
@@ -15,9 +13,15 @@ end
 local packer_bootstrap = ensure_packer()
 
 -- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+vim.cmd.packadd('packer.nvim')
 
-return require('packer').startup(function(use)
+local ok, packer = pcall(require, 'packer')
+if not ok then
+    -- Return false so the init can check if it is safe to call the plugin config
+    return false
+end
+
+packer.startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
@@ -26,13 +30,7 @@ return require('packer').startup(function(use)
         tag = '0.1.1', requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    use {
-        'folke/tokyonight.nvim',
-        as = 'tokyonight',
-        config = function()
-            vim.cmd('colorscheme tokyonight')
-        end
-    }
+    use 'folke/tokyonight.nvim'
 
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -77,3 +75,5 @@ return require('packer').startup(function(use)
         require('packer').sync()
     end
 end)
+
+return true

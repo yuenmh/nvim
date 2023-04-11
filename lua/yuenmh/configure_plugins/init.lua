@@ -1,0 +1,6 @@
+require('yuenmh.configure_plugins.treesitter')
+require('yuenmh.configure_plugins.fugitive')
+require('yuenmh.configure_plugins.harpoon')
+require('yuenmh.configure_plugins.telescope')
+require('yuenmh.configure_plugins.lsp')
+require('yuenmh.configure_plugins.undotree')
