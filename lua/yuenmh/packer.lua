@@ -4,7 +4,7 @@ local ensure_packer = function()
     local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
     if fn.empty(fn.glob(install_path)) > 0 then
         fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.cmd [[packadd packer.nvim]]
+        vim.cmd.packadd('packer.nvim')
         return true
     end
     return false
@@ -12,16 +12,9 @@ end
 
 local packer_bootstrap = ensure_packer()
 
--- Only required if you have packer configured as `opt`
 vim.cmd.packadd('packer.nvim')
 
-local ok, packer = pcall(require, 'packer')
-if not ok then
-    -- Return false so the init can check if it is safe to call the plugin config
-    return false
-end
-
-packer.startup(function(use)
+require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
