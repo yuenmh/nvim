@@ -66,6 +66,11 @@ require('packer').startup(function(use)
 
     use 'nvim-treesitter/nvim-treesitter-context'
 
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+
     -- put all plugins before this
     -- for bootstrapping
     if packer_bootstrap then
