@@ -45,8 +45,8 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set("n", "gh", function() vim.lsp.buf.hover() end, opts)
     -- I don't see any advantages of this over hover()
     -- vim.keymap.set("n", "gh", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
 end)
 
 require('lspconfig').lua_ls.setup {
