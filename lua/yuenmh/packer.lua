@@ -68,7 +68,40 @@ require('packer').startup(function(use)
         event = "InsertEnter",
         config = function()
             require("copilot").setup({
+                panel = {
+                    enabled = false,
+                },
+                suggestion = {
+                    enabled = true,
+                    auto_trigger = true,
+                    debounce = 25,
+                    keymap = {
+                        accept = false,
+                        accept_word = false,
+                        accept_line = false,
+                        next = false,
+                        prev = false,
+                        dismiss = false,
+                    },
+                },
+                filetypes = {
+                    gitcommit = false,
+                    gitrebase = false,
+                    ["*"] = true,
+                },
+                copilot_node_command = 'node', -- Node.js version must be > 16.x
+                server_opts_overrides = {},
             })
+            -- keymaps to accept suggestions
+            local suggestion = require("copilot.suggestion")
+            vim.keymap.set("i", "<tab>", function()
+                if suggestion.is_visible() then
+                    suggestion.accept()
+                else
+                    vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<tab>", true, true, true), "n")
+                end
+            end)
+            vim.keymap.set("i", "<C-l>", suggestion.accept_word)
         end,
     }
 

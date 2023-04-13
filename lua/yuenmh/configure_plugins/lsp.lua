@@ -21,6 +21,7 @@ cmp.setup({
         ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
         ['<C-space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
     },
     sources = {
         { name = 'path' },
