@@ -40,7 +40,6 @@ lsp.set_preferences({
 lsp.on_attach(function(_, bufnr)
     -- Use autopep8 for python
     if vim.bo.filetype == 'python' then
-        print("Using autopep8 for python")
         lsp.format_on_save({
             servers = {
                 ["autopep8"] = { "python" }
@@ -66,9 +65,9 @@ require('lspconfig').lua_ls.setup {
             diagnostics = {
                 globals = { 'vim' }
             },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("lua", true),
-            },
+            -- workspace = {
+            --     library = vim.api.nvim_get_runtime_file("lua", true),
+            -- },
         }
     }
 }
