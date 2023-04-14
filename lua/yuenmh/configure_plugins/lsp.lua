@@ -40,11 +40,17 @@ lsp.set_preferences({
 lsp.on_attach(function(_, bufnr)
     -- Use autopep8 for python
     if vim.bo.filetype == 'python' then
-        lsp.format_on_save({
-            servers = {
-                ["autopep8"] = { "python" }
-            },
-        })
+        lsp.buffer_autoformat()
+        -- vim.opt.tabstop = 4
+        -- vim.opt.softtabstop = 4
+        -- vim.opt.shiftwidth = 4
+        -- vim.opt.expandtab = true
+        -- vim.opt.smartindent = false
+        -- lsp.format_on_save({
+        --     servers = {
+        --         ["autopep8"] = { "python" }
+        --     },
+        -- })
     else
         lsp.buffer_autoformat()
     end
