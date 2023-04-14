@@ -10,4 +10,6 @@ function ColorMyPencils(color)
     vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 end
 
-ColorMyPencils('tokyonight')
+vim.api.nvim_create_user_command("ColorMyPencils", "lua ColorMyPencils(<f-args>)", { nargs = 1 })
+
+ColorMyPencils("tokyonight")
