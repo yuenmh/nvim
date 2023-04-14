@@ -1,5 +1,6 @@
 if require('yuenmh.packer') then
-    require('yuenmh.remap')
+    local remap = require('yuenmh.remap')
+    remap.global()
     require('yuenmh.set')
     require('yuenmh.configure_plugins')
     require('yuenmh.colors')

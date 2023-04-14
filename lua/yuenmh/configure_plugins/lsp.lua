@@ -6,7 +6,6 @@ lsp.preset('recommended')
 
 lsp.ensure_installed({
     'lua_ls',
-    'rust_analyzer',
 })
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -17,8 +16,6 @@ cmp.setup({
         completeopt = 'menu,menuone,noinsert'
     },
     mapping = {
-        ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
         ['<C-space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
