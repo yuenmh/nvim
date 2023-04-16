@@ -103,6 +103,9 @@ require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 
+    -- Local plugins
+    use "/home/evan/source/handian.nvim"
+
     -- put all plugins before this
     -- for bootstrapping
     if packer_bootstrap then
