@@ -103,6 +103,21 @@ require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 
+    use {
+        'j-hui/fidget.nvim',
+        config = function()
+            require("fidget").setup({
+                text = {
+                    spinner = "moon",
+                },
+                window = {
+                    blend = 0,
+                    -- border = "rounded",
+                }
+            })
+        end
+    }
+
     -- Local plugins
     -- use {
     --     "/home/evan/source/handian.nvim",

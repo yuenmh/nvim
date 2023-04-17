@@ -71,10 +71,13 @@ require('lspconfig').lua_ls.setup {
             diagnostics = {
                 globals = { 'vim' }
             },
-            -- workspace = {
-            --     -- Make the server aware of Neovim runtime files
-            --     library = vim.api.nvim_get_runtime_file("", true),
-            -- },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+                -- https://github.com/LuaLS/lua-language-server/wiki/Settings#workspacecheckthirdparty
+                -- This should stop it from always asking or generating .luarc.json files
+                checkThirdParty = false,
+            },
         }
     }
 }
