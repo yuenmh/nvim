@@ -89,7 +89,7 @@ require('packer').startup(function(use)
                     gitrebase = false,
                     ["*"] = true,
                 },
-                copilot_node_command = 'node', -- Node.js version must be > 16.x
+                copilot_node_command = '/usr/bin/node', -- Node.js version must be > 16.x
                 server_opts_overrides = {},
             })
             require("yuenmh.remap").copilot()
@@ -104,19 +104,19 @@ require('packer').startup(function(use)
     }
 
     -- Local plugins
-    use {
-        "/home/evan/source/handian.nvim",
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "kkharji/sqlite.lua",
-        },
-        config = function()
-            local handian = require("handian")
-            handian.setup({
-                global_command = true,
-            })
-        end
-    }
+    -- use {
+    --     "/home/evan/source/handian.nvim",
+    --     requires = {
+    --         "nvim-lua/plenary.nvim",
+    --         "kkharji/sqlite.lua",
+    --     },
+    --     config = function()
+    --         local handian = require("handian")
+    --         handian.setup({
+    --             global_command = true,
+    --         })
+    --     end
+    -- }
 
     -- put all plugins before this
     -- for bootstrapping
