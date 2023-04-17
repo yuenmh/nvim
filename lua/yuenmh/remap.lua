@@ -46,11 +46,25 @@ function M.harpoon()
 end
 
 function M.telescope()
+    local actions = require("telescope.actions")
+    require("telescope").setup {
+        defaults = {
+            mappings = {
+                n = {
+                    ["<leader>qf"] = function(bufnr)
+                        actions.send_to_qflist(bufnr)
+                        vim.cmd("copen")
+                    end,
+                },
+            },
+        },
+    }
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = "[p]roject [f]iles" })
-    vim.keymap.set('n', '<leader>pg', builtin.git_files, { desc = "[p]roject [g]it files" })
+    vim.keymap.set('n', '<leader>pg', builtin.live_grep, { desc = "[p]roject [g]rep" })
     vim.keymap.set('n', '<leader>ps', builtin.lsp_workspace_symbols, { desc = "[p]roject [s]ymbols" })
     vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = "[d]ocument [s]ymbols" })
+    vim.keymap.set('n', '<leader>gr', builtin.lsp_references, { desc = "[g]oto [r]eferences" })
 end
 
 function KeymapReload()
