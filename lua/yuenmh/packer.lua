@@ -118,21 +118,6 @@ require('packer').startup(function(use)
         end
     }
 
-    -- Local plugins
-    -- use {
-    --     "/home/evan/source/handian.nvim",
-    --     requires = {
-    --         "nvim-lua/plenary.nvim",
-    --         "kkharji/sqlite.lua",
-    --     },
-    --     config = function()
-    --         local handian = require("handian")
-    --         handian.setup({
-    --             global_command = true,
-    --         })
-    --     end
-    -- }
-
     -- put all plugins before this
     -- for bootstrapping
     if packer_bootstrap then
