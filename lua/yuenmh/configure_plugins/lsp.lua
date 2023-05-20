@@ -48,6 +48,8 @@ lsp.on_attach(function(_, bufnr)
         --         ["autopep8"] = { "python" }
         --     },
         -- })
+    elseif vim.bo.filetype == 'tex' then
+        -- Do nothing
     else
         lsp.buffer_autoformat()
     end
