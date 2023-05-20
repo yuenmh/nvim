@@ -1,7 +1,8 @@
----Set the color scheme and then make the background transparent
----@param color string
-function ColorMyPencils(color)
-    vim.cmd.colorscheme(color)
+local M = {}
+
+---@param name string
+function M.set_with_transparent_background(name)
+    vim.cmd.colorscheme(name)
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -9,6 +10,4 @@ function ColorMyPencils(color)
     vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 end
 
-vim.api.nvim_create_user_command("ColorMyPencils", "lua ColorMyPencils(<f-args>)", { nargs = 1 })
-
-ColorMyPencils("tokyonight")
+return M

@@ -67,7 +67,14 @@ function M.plugins()
 
 
         -- Cosmetic stuff
-        'folke/tokyonight.nvim',
+        {
+            'folke/tokyonight.nvim',
+            lazy = false,
+            priority = 1000,
+            config = function()
+                require('yuenmh.colors').set_with_transparent_background("tokyonight")
+            end
+        },
         'nvim-lualine/lualine.nvim',
         -- 'nvim-tree/nvim-web-devicons', -- Not using because I can't find a Nerd Font that I like
         {
