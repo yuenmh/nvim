@@ -10,13 +10,12 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
+
+require('yuenmh.set').setup()
+require('yuenmh.keymap').setup()
 require('lazy').setup(require('yuenmh.plugins').plugins(), {})
 
-local remap = require('yuenmh.remap')
-remap.global()
-require('yuenmh.set')
-require('yuenmh.configure_plugins')
-require('yuenmh.colors')
+-- Useful globals
 
 ---Reload module
 ---@param mod string
