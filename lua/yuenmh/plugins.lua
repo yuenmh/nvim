@@ -51,6 +51,11 @@ function M.plugins()
                     desc = '[p]roject [s]ymbols',
                 },
                 {
+                    '<leader>pd',
+                    function() require('telescope.builtin').diagnostics() end,
+                    desc = '[p]roject [d]iagnostics',
+                },
+                {
                     '<leader>ds',
                     function() require('telescope.builtin').lsp_document_symbols() end,
                     desc = '[d]ocument [s]ymbols',
@@ -59,6 +64,11 @@ function M.plugins()
                     '<leader>gr',
                     function() require('telescope.builtin').lsp_references() end,
                     desc = '[g]oto [r]eferences',
+                },
+                {
+                    '<leader>gd',
+                    function() require('telescope.builtin').lsp_definitions() end,
+                    desc = '[g]oto [d]efinitions',
                 },
             },
             config = function()
