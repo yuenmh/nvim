@@ -30,7 +30,9 @@ function M.setup()
                     symbols = { error = '', warn = '', info = '', hint = '' }
                 },
             },
-            lualine_c = { 'filename' },
+            lualine_c = {
+                { 'filename', file_status = true, path = 1 },
+            },
             lualine_x = { 'encoding', 'filetype' },
             lualine_y = { 'progress' },
             lualine_z = { 'location' }
