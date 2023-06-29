@@ -87,6 +87,8 @@ function M.setup()
         }
     }
 
+    require('lspconfig').ocamllsp.setup({})
+
     lsp.setup()
 end
 
