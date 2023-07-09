@@ -38,24 +38,20 @@ function M.setup()
     })
 
     lsp.on_attach(function(_, bufnr)
-        -- Use autopep8 for python
-        if vim.bo.filetype == 'python' then
-            lsp.buffer_autoformat()
-            -- vim.opt.tabstop = 4
-            -- vim.opt.softtabstop = 4
-            -- vim.opt.shiftwidth = 4
-            -- vim.opt.expandtab = true
-            -- vim.opt.smartindent = false
-            -- lsp.format_on_save({
-            --     servers = {
-            --         ["autopep8"] = { "python" }
-            --     },
-            -- })
-        elseif vim.bo.filetype == 'tex' then
-            -- Do nothing
-        else
-            lsp.buffer_autoformat()
-        end
+        local group = vim.api.nvim_create_augroup('FormatOnSave', { clear = true })
+        vim.api.nvim_create_autocmd('BufWritePre', {
+            callback = function()
+                vim.lsp.buf.format({
+                    filter = function(client)
+                        return (
+                            client.name ~= 'tsserver'
+                            and vim.bo.filetype ~= 'tex'
+                        )
+                    end
+                })
+            end,
+            group = group,
+        })
 
         local opts = { buffer = bufnr, remap = false }
 
