@@ -1,5 +1,20 @@
 local M = {}
 
+---@param name string
+---@return string | nil
+function M.find_binary(name)
+    local result = ""
+    local handle = io.popen(table.concat({ 'which', name }, ' '))
+    if handle ~= nil then
+        result = handle:read("*a")
+    end
+    if result == "" then
+        return nil
+    else
+        return result
+    end
+end
+
 -- Returns the plugin spec
 function M.plugins()
     return {
@@ -127,6 +142,14 @@ function M.plugins()
                 },
             },
             config = function()
+                -- Check if node exists because copilot is not necessary
+                -- TODO: Add checks for if Node.js version > 16.x
+                local node_path = M.find_binary("node")
+                if node_path == nil then
+                    vim.notify('Node binary not found: Copilot disabled.')
+                    return
+                end
+
                 require("copilot").setup({
                     panel = {
                         enabled = false,
@@ -149,7 +172,7 @@ function M.plugins()
                         gitrebase = false,
                         ["*"] = true,
                     },
-                    copilot_node_command = '/usr/bin/node', -- Node.js version must be > 16.x
+                    copilot_node_command = node_path,
                     server_opts_overrides = {},
                 })
             end,
