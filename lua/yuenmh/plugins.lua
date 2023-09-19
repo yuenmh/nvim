@@ -11,6 +11,7 @@ function M.find_binary(name)
     if result == "" then
         return nil
     else
+        result = result:gsub('^%s*(.-)%s*$', '%1')
         return result
     end
 end
