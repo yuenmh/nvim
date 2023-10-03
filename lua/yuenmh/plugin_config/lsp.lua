@@ -85,17 +85,19 @@ function M.setup()
 
     require('lspconfig').ocamllsp.setup({})
 
-    require('lspconfig').tailwindcss.setup({
-        settings = {
-            tailwindCSS = {
-                experimental = {
-                    classRegex = {
-                        "\\/\\*\\s*@tw\\s*\\*\\/\\s*['\"]([^'\"]+)['\"]",
+    if require('yuenmh.plugins').find_binary('tailwindcss-language-server') ~= nil then
+        require('lspconfig').tailwindcss.setup({
+            settings = {
+                tailwindCSS = {
+                    experimental = {
+                        classRegex = {
+                            "\\/\\*\\s*@tw\\s*\\*\\/\\s*['\"]([^'\"]+)['\"]",
+                        }
                     }
                 }
             }
-        }
-    })
+        })
+    end
 
     lsp.setup()
 end
