@@ -45,6 +45,7 @@ function M.plugins()
         'mbbill/undotree',
         'tpope/vim-fugitive',
         'nvim-treesitter/nvim-treesitter-context',
+        'folke/trouble.nvim',
         {
             'nvim-telescope/telescope.nvim',
             tag = '0.1.1',
@@ -178,21 +179,6 @@ function M.plugins()
                 })
             end,
         },
-        {
-            'jose-elias-alvarez/null-ls.nvim',
-            requires = 'nvim-lua/plenary.nvim',
-            lazy = false,
-            config = function()
-                local null_ls = require('null-ls')
-                null_ls.setup({
-                    sources = {
-                        null_ls.builtins.formatting.prettierd,
-                        null_ls.builtins.formatting.ocamlformat,
-                    },
-                })
-            end,
-        },
-
         -- Cosmetic stuff
         {
             'folke/tokyonight.nvim',
@@ -212,15 +198,14 @@ function M.plugins()
             'j-hui/fidget.nvim',
             lazy = false,
             config = function()
-                require("fidget").setup({
+                require("fidget").setup {
                     text = {
                         spinner = "moon",
                     },
                     window = {
                         blend = 0,
-                        -- border = "rounded",
                     }
-                })
+                }
             end,
         },
     }

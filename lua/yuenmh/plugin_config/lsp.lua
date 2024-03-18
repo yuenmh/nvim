@@ -99,6 +99,16 @@ function M.setup()
         })
     end
 
+    require('lspconfig').rust_analyzer.setup {
+        settings = {
+            ['rust-analyzer'] = {
+                checkOnSave = {
+                    command = 'clippy',
+                }
+            }
+        }
+    }
+
     lsp.setup()
 end
 
