@@ -47,6 +47,7 @@ function M.plugins()
         'nvim-treesitter/nvim-treesitter-context',
         'folke/trouble.nvim',
         'folke/neodev.nvim',
+        'stevearc/dressing.nvim',
         {
             'aznhe21/actions-preview.nvim',
             config = function()
@@ -192,7 +193,11 @@ function M.plugins()
             lazy = false,
             priority = 1000,
             config = function()
-                require('yuenmh.colors').set_with_transparent_background("tokyonight")
+                require('tokyonight').setup {
+                    style = 'moon'
+                }
+                vim.cmd.colorscheme('tokyonight')
+                -- require('yuenmh.colors').set_with_transparent_background("tokyonight")
             end,
         },
         {
