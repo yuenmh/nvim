@@ -59,7 +59,7 @@ function M.setup()
         vim.keymap.set("n", "gh", function() vim.lsp.buf.hover() end, opts)
         -- I don't see any advantages of this over hover()
         -- vim.keymap.set("n", "gh", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+        -- vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
         vim.keymap.set("n", "<leader>cn", function() vim.lsp.buf.rename() end, opts)
     end)
 

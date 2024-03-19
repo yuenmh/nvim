@@ -46,6 +46,13 @@ function M.plugins()
         'tpope/vim-fugitive',
         'nvim-treesitter/nvim-treesitter-context',
         'folke/trouble.nvim',
+        'folke/neodev.nvim',
+        {
+            'aznhe21/actions-preview.nvim',
+            config = function()
+                vim.keymap.set({ 'v', 'n' }, '<leader>ca', function() require('actions-preview').code_actions() end)
+            end,
+        },
         {
             'nvim-telescope/telescope.nvim',
             tag = '0.1.1',
