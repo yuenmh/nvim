@@ -154,6 +154,13 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Tab settings
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -226,7 +233,8 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
     -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+    --
+    -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
     -- NOTE: Plugins can also be added by using a table,
     -- with the first argument being the link and the following
@@ -858,6 +866,26 @@ require('lazy').setup({
             --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
             --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
             --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+        end,
+    },
+    {
+        'ThePrimeagen/harpoon',
+        branch = 'harpoon2',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            local harpoon = require 'harpoon'
+            harpoon:setup {}
+            vim.keymap.set('n', '<leader>a', function()
+                harpoon:list():append()
+            end, { desc = '[A]dd to tabs' })
+            vim.keymap.set('n', '<leader>e', function()
+                harpoon.ui:toggle_quick_menu(harpoon:list())
+            end, { desc = '[E]dit tabs' })
+            for i = 1, 9 do
+                vim.keymap.set('n', '<leader>' .. i, function()
+                    harpoon:list():select(i)
+                end, { desc = 'Goto tab [' .. i .. ']' })
+            end
         end,
     },
 
