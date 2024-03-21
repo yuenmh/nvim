@@ -223,6 +223,34 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.api.nvim_create_user_command('Terminal', ':80vsplit term://' .. vim.g.terminal_command, {})
 
+-- Vim diagnostic config
+-- Make the highlight cover the entire line
+-- TODO: make this work
+--
+--[[
+vim.diagnostic.config {
+    signs = {
+        linehl = {
+            [vim.diagnostic.severity.ERROR] = 'DiagnosticErrorLn',
+            [vim.diagnostic.severity.WARN] = 'DiagnosticWarnLn',
+            [vim.diagnostic.severity.INFO] = 'DiagnosticInfoLn',
+            [vim.diagnostic.severity.HINT] = 'DiagnosticHintLn',
+        },
+    },
+    -- Rounded borders
+    -- float = { border = 'rounded' },
+}
+for diag, symbol in ipairs { Error = '', Warn = '', Info = '', Hint = '󱩎' } do
+    local sign = 'DiagnosticSign' .. diag
+    vim.fn.sign_define(sign, {
+        text = symbol,
+        texthl = sign,
+        linehl = sign,
+        numhl = sign,
+    })
+end
+]]
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -481,7 +509,7 @@ require('lazy').setup({
             --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
             --    function will be executed to configure the current buffer
             vim.api.nvim_create_autocmd('LspAttach', {
-                group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+                group = vim.api.nvim_create_augroup('yuenmh-lsp-attach', { clear = true }),
                 callback = function(event)
                     -- NOTE: Remember that Lua is a real programming language, and as such it is possible
                     -- to define small helper and utility functions so you don't have to repeat yourself.
@@ -554,10 +582,7 @@ require('lazy').setup({
                     end
 
                     -- Add rounded corners to popup windows to make them look nicer
-                    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
-                    vim.diagnostic.config {
-                        float = { border = 'rounded' },
-                    }
+                    -- vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
                 end,
             })
 
