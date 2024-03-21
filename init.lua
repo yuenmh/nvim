@@ -223,6 +223,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.api.nvim_create_user_command('Terminal', ':80vsplit term://' .. vim.g.terminal_command, {})
 
+-- Allow mistyping `:w` as `:W`
+vim.api.nvim_create_user_command('W', ':w', {})
+
 -- Vim diagnostic config
 -- Make the highlight cover the entire line
 -- TODO: make this work
