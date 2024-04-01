@@ -207,6 +207,21 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = '[K] Move selected line up
 -- Paste without overwriting paste buffer
 vim.keymap.set('v', 'p', 'P')
 
+-- Create custom filetypes
+---@param pattern any
+---@param filetype string
+local associate_filetype = function(pattern, filetype)
+    vim.api.nvim_create_autocmd({ 'BufRead', 'BufEnter' }, {
+        pattern = pattern,
+        group = vim.api.nvim_create_augroup('yuenmh-filetype-' .. filetype, { clear = true }),
+        callback = function()
+            vim.bo.filetype = 'typst'
+        end,
+    })
+end
+
+associate_filetype({ '*.typ' }, 'typst')
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
