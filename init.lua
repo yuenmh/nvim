@@ -952,6 +952,30 @@ require('lazy').setup({
         end,
     },
 
+    {
+        'zbirenbaum/copilot.lua',
+        event = 'InsertEnter',
+        cmd = 'Copilot',
+        config = function()
+            require('copilot').setup {
+                panel = { enabled = false },
+                suggestion = {
+                    auto_trigger = true,
+                    debounce = 25,
+                    keymap = {
+                        accept = '<C-j>',
+                        dismiss = false,
+                        accept_word = false,
+                        accept_line = false,
+                        next = false,
+                        prev = false,
+                    },
+                },
+                filetypes = { ['*'] = true },
+            }
+        end,
+    },
+
     -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
     -- init.lua. If you want these files, they are in the repository, so you can just download them and
     -- place them in the correct locations.
