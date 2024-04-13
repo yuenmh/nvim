@@ -207,6 +207,11 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = '[K] Move selected line up
 -- Paste without overwriting paste buffer
 vim.keymap.set('v', 'p', 'P')
 
+-- Open netrw
+vim.keymap.set('n', '<leader>pv', function()
+    vim.api.nvim_command 'Lexplore'
+end, { desc = '[P]roject [V]iew' })
+
 -- Custom filetype associations
 require('yuenmh.ft').associate { pattern = '*.typ', filetype = 'typst' }
 require('yuenmh.ft').associate { pattern = { 'Justfile', 'justfile' }, filetype = 'make' }
