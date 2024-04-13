@@ -210,6 +210,7 @@ vim.keymap.set('v', 'p', 'P')
 -- Custom filetype associations
 require('yuenmh.ft').associate { pattern = '*.typ', filetype = 'typst' }
 require('yuenmh.ft').associate { pattern = { 'Justfile', 'justfile' }, filetype = 'make' }
+require('yuenmh.ft').associate { pattern = { 'docker-compose.yaml', 'docker-compose.yml', 'compose.yaml', 'compose.yml' }, filetype = 'yaml.docker-compose' }
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
