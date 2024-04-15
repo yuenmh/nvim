@@ -207,9 +207,9 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = '[K] Move selected line up
 -- Paste without overwriting paste buffer
 vim.keymap.set('v', 'p', 'P')
 
--- Open netrw
+-- Open oil
 vim.keymap.set('n', '<leader>pv', function()
-    vim.api.nvim_command 'Lexplore'
+    require('oil').open()
 end, { desc = '[P]roject [V]iew' })
 
 -- Custom filetype associations
@@ -1004,6 +1004,9 @@ require('lazy').setup({
         dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
         opts = {},
     },
+    { 'stevearc/oil.nvim', dependencies = {
+        { 'nvim-tree/nvim-web-devicons', lazy = true },
+    }, opts = {} },
 
     -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
     -- init.lua. If you want these files, they are in the repository, so you can just download them and
