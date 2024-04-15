@@ -899,6 +899,29 @@ require('lazy').setup({
                         end,
                     },
                 },
+                lualine_c = {
+                    {
+                        'filename',
+                        path = 1, -- Relative path
+                        ---@param filename string
+                        fmt = function(filename)
+                            local parts = {}
+                            for part in filename:gmatch '[^/]+/?' do
+                                table.insert(parts, part)
+                            end
+                            for i, part in ipairs(parts) do
+                                if i ~= #parts then
+                                    parts[i] = part:sub(1, 1)
+                                end
+                            end
+                            return table.concat(parts, '/')
+                        end,
+                    },
+                },
+                lualine_x = {
+                    'encoding',
+                    'filetype',
+                },
             },
         },
     },
