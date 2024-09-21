@@ -707,7 +707,7 @@ require('lazy').setup({
                 local prettier = { 'prettierd', 'prettier' }
                 return {
                     lua = { 'stylua' },
-                    python = { 'isort', 'black' },
+                    python = { 'isort', 'black', 'ruff_format' },
                     javascript = { prettier },
                     typescript = { prettier },
                     json = { prettier },
