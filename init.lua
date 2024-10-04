@@ -703,21 +703,23 @@ require('lazy').setup({
                     lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
                 }
             end,
-            formatters_by_ft = (function()
-                local prettier = { 'prettierd', 'prettier' }
-                return {
-                    lua = { 'stylua' },
-                    python = { 'isort', 'black', 'ruff_format' },
-                    javascript = { prettier },
-                    typescript = { prettier },
-                    json = { prettier },
-                    jsonc = { prettier },
-                    javascriptreact = { prettier },
-                    typescriptreact = { prettier },
-                    html = { prettier },
-                    css = { prettier },
-                }
-            end)(),
+            formatters_by_ft = {
+                lua = { 'stylua' },
+                python = function(bufnr)
+                    if require('conform').get_formatter_info('ruff_format', bufnr) then
+                        return { 'isort', 'ruff_format' }
+                    else
+                        return { 'isort', 'black' }
+                    end
+                end,
+                ['{javascript,javascriptreact,typescript,typescriptreact,json,jsonc,html,css}'] = function(bufnr)
+                    if require('conform').get_formatter_info('prettierd', bufnr).available then
+                        return { 'prettierd' }
+                    else
+                        return { 'prettier' }
+                    end
+                end,
+            },
         },
     },
 
