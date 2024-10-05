@@ -705,20 +705,16 @@ require('lazy').setup({
             end,
             formatters_by_ft = {
                 lua = { 'stylua' },
-                python = function(bufnr)
-                    if require('conform').get_formatter_info('ruff_format', bufnr) then
-                        return { 'isort', 'ruff_format' }
-                    else
-                        return { 'isort', 'black' }
-                    end
-                end,
-                ['{javascript,javascriptreact,typescript,typescriptreact,json,jsonc,html,css}'] = function(bufnr)
-                    if require('conform').get_formatter_info('prettierd', bufnr).available then
-                        return { 'prettierd' }
-                    else
-                        return { 'prettier' }
-                    end
-                end,
+                python = require('yuenmh.fmt').first { 'isort', { 'ruff_format', 'black' } },
+                javascript = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
+                typescript = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
+                javascriptreact = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
+                typescriptreact = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
+                html = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
+                css = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
+                markdown = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
+                yaml = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
+                json = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
             },
         },
     },
@@ -1006,11 +1002,11 @@ require('lazy').setup({
             }
         end,
     },
-    {
-        'pmizio/typescript-tools.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-        opts = {},
-    },
+    -- {
+    --     'pmizio/typescript-tools.nvim',
+    --     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    --     opts = {},
+    -- },
     { 'stevearc/oil.nvim', dependencies = {
         { 'nvim-tree/nvim-web-devicons', lazy = true },
     }, opts = {} },
