@@ -1007,9 +1007,68 @@ require('lazy').setup({
     --     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     --     opts = {},
     -- },
-    { 'stevearc/oil.nvim', dependencies = {
-        { 'nvim-tree/nvim-web-devicons', lazy = true },
-    }, opts = {} },
+    {
+        'stevearc/oil.nvim',
+        dependencies = {
+            { 'nvim-tree/nvim-web-devicons', lazy = true },
+        },
+        opts = {},
+    },
+
+    {
+        'folke/noice.nvim',
+        event = 'VeryLazy',
+        opts = {
+            views = {
+                cmdline_popup = {
+                    border = {
+                        style = 'none',
+                        padding = { 0, 1 },
+                    },
+                    win_options = {
+                        winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
+                    },
+                    position = {
+                        row = 0,
+                        col = '50%',
+                    },
+                    size = {
+                        width = 80,
+                        height = 'auto',
+                    },
+                },
+                popupmenu = {
+                    relative = 'editor',
+                    position = {
+                        row = 1,
+                        col = '50%',
+                    },
+                    size = {
+                        width = 80,
+                        height = 10,
+                    },
+                    border = {
+                        style = 'none',
+                        padding = { 0, 1 },
+                    },
+                    win_options = {
+                        winhighlight = 'NormalFloat:NormalFloat,FloatBorder:FloatBorder',
+                    },
+                },
+            },
+            lsp = {
+                progress = { enabled = false },
+            },
+        },
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            'MunifTanjim/nui.nvim',
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            -- 'rcarriga/nvim-notify',
+        },
+    },
 
     -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
     -- init.lua. If you want these files, they are in the repository, so you can just download them and
