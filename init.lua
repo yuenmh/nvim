@@ -964,12 +964,20 @@ require('lazy').setup({
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             local harpoon = require 'harpoon'
-            harpoon:setup {}
+            harpoon:setup {
+                settings = {
+                    save_on_toggle = true,
+                    sync_on_ui_close = true,
+                },
+            }
             vim.keymap.set('n', '<leader>a', function()
                 harpoon:list():add()
             end, { desc = '[A]dd to tabs' })
             vim.keymap.set('n', '<leader>e', function()
-                harpoon.ui:toggle_quick_menu(harpoon:list())
+                harpoon.ui:toggle_quick_menu(harpoon:list(), {
+                    border = 'none',
+                    ui_width_ratio = 0.40,
+                })
             end, { desc = '[E]dit tabs' })
             for i = 1, 9 do
                 vim.keymap.set('n', '<leader>' .. i, function()
