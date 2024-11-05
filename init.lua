@@ -705,7 +705,7 @@ require('lazy').setup({
             end,
             formatters_by_ft = {
                 lua = { 'stylua' },
-                python = require('yuenmh.fmt').first { 'isort', { 'ruff_format', 'black' } },
+                python = require('yuenmh.fmt').first { { 'ruff_organize_imports', 'isort' }, { 'ruff_format', 'black' } },
                 javascript = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
                 typescript = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
                 javascriptreact = require('yuenmh.fmt').first { { 'prettierd', 'prettier' } },
