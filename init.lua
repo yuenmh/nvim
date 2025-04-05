@@ -101,6 +101,9 @@ vim.g.terminal_command = 'fish'
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- Enable local config
+vim.opt.exrc = true
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
