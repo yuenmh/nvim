@@ -233,6 +233,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
+-- Disable auto-indentation for HTML-like files
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'html', 'xml', 'xhtml' },
+    group = vim.api.nvim_create_augroup('yuenmh-disable-auto-indent', { clear = true }),
+    callback = function()
+        vim.bo.smartindent = false
+        vim.bo.indentkeys = ''
+    end,
+})
+
 vim.api.nvim_create_user_command('Terminal', ':80vsplit term://' .. vim.g.terminal_command, {})
 
 -- Allow mistyping `:w` as `:W`
@@ -1100,6 +1110,18 @@ require('lazy').setup({
             'nvim-telescope/telescope.nvim',
         },
         config = true,
+    },
+
+    {
+        'folke/lazydev.nvim',
+        ft = 'lua', -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+            },
+        },
     },
 
     -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
