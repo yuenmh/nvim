@@ -503,10 +503,6 @@ require('lazy').setup({
                     },
                 },
             },
-
-            -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-            -- used for completion, annotations and signatures of Neovim apis
-            { 'folke/neodev.nvim', opts = {} },
         },
         config = function()
             -- Brief aside: **What is LSP?**
@@ -1122,6 +1118,28 @@ require('lazy').setup({
                 { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
             },
         },
+    },
+
+    {
+        'rachartier/tiny-inline-diagnostic.nvim',
+        event = 'VeryLazy',
+        priority = 1000,
+        config = function()
+            require('tiny-inline-diagnostic').setup {
+                preset = 'simple',
+                options = {
+                    multilines = {
+                        enabled = true,
+                    },
+                    show_source = {
+                        enabled = true,
+                    },
+                },
+            }
+            vim.diagnostic.config {
+                virtual_text = false, -- Disable Neovim's default virtual text diagnostics
+            }
+        end,
     },
 
     -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
