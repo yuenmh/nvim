@@ -251,6 +251,17 @@ vim.api.nvim_create_user_command('Terminal', ':80vsplit term://' .. vim.g.termin
 -- Allow mistyping `:w` as `:W`
 vim.api.nvim_create_user_command('W', ':w', {})
 
+vim.lsp.enable 'rust_analyzer'
+vim.lsp.config('rust_analyzer', {
+    settings = {
+        ['rust-analyzer'] = {
+            check = {
+                command = 'clippy',
+            },
+        },
+    },
+})
+
 -- Vim diagnostic config
 -- Make the highlight cover the entire line
 -- TODO: make this work
@@ -635,15 +646,6 @@ require('lazy').setup({
                 -- clangd = {},
                 -- gopls = {},
                 -- pyright = {},
-                rust_analyzer = {
-                    settings = {
-                        ['rust-analyzer'] = {
-                            checkOnSave = {
-                                command = 'clippy',
-                            },
-                        },
-                    },
-                },
                 basedpyright = {
                     settings = {
                         basedpyright = {
