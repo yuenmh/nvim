@@ -262,6 +262,18 @@ vim.lsp.config('rust_analyzer', {
     },
 })
 
+vim.lsp.enable 'basedpyright'
+vim.lsp.config('basedpyright', {
+    settings = {
+        basedpyright = {
+            analysis = {
+                typeCheckingMode = 'standard',
+                autoImportCompletions = true,
+            },
+        },
+    },
+})
+
 -- Vim diagnostic config
 -- Make the highlight cover the entire line
 -- TODO: make this work
@@ -646,16 +658,16 @@ require('lazy').setup({
                 -- clangd = {},
                 -- gopls = {},
                 -- pyright = {},
-                basedpyright = {
-                    settings = {
-                        basedpyright = {
-                            analysis = {
-                                typeCheckingMode = 'standard',
-                                autoImportCompletions = true,
-                            },
-                        },
-                    },
-                },
+                -- basedpyright = {
+                --     settings = {
+                --         python = {
+                --             analysis = {
+                --                 typeCheckingMode = 'standard',
+                --                 autoImportCompletions = true,
+                --             },
+                --         },
+                --     },
+                -- },
                 -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
                 --
                 -- Some languages (like typescript) have entire language plugins that can be useful:
