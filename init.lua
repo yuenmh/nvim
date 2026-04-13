@@ -45,13 +45,7 @@ vim.cmd.colorscheme 'tokyonight-night'
 vim.pack.add { gh 'neovim/nvim-lspconfig', gh 'mason-org/mason.nvim' }
 require 'mason'.setup()
 
-vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'rust_analyzer'
-vim.lsp.enable 'basedpyright'
-vim.lsp.enable 'clangd'
-vim.lsp.enable 'gopls'
-vim.lsp.enable 'ts_ls'
-vim.lsp.enable 'tinymist'
 
 vim.lsp.config('rust_analyzer', {
     settings = {
@@ -73,6 +67,8 @@ vim.lsp.config('basedpyright', {
         },
     },
 })
+
+require 'my.mason-auto-enable'.setup()
 
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(event)
@@ -136,7 +132,7 @@ vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter' } }
 vim.api.nvim_create_autocmd('FileType', {
     callback = function()
         pcall(vim.treesitter.start)
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end,
 })
 
