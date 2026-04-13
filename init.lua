@@ -53,7 +53,15 @@ vim.lsp.enable 'gopls'
 vim.lsp.enable 'ts_ls'
 vim.lsp.enable 'tinymist'
 
-vim.lsp.config('rust-analyzer', {})
+vim.lsp.config('rust_analyzer', {
+    settings = {
+        ['rust-analyzer'] = {
+            check = {
+                command = 'clippy',
+            },
+        },
+    },
+})
 
 vim.lsp.config('basedpyright', {
     settings = {
