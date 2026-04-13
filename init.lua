@@ -1,8 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.have_nerd_font = true
-
 vim.g.terminal_command = 'fish'
 
 vim.opt.termguicolors = true
@@ -76,6 +74,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>cn', vim.lsp.buf.rename, { buffer = event.buf, desc = 'LSP: Rename' })
         vim.keymap.set('n', '<leader>ca', require 'fzf-lua'.lsp_code_actions,
             { buffer = event.buf, desc = 'LSP: Code Actions' })
+        vim.keymap.set('n', 'gd', require 'fzf-lua'.lsp_definitions,
+            { buffer = event.buf, desc = 'LSP: Go To Definition' })
+        vim.keymap.set('n', 'gD', require 'fzf-lua'.lsp_declarations,
+            { buffer = event.buf, desc = 'LSP: Go To Definition' })
+        vim.keymap.set('n', 'gr', require 'fzf-lua'.lsp_references,
+            { buffer = event.buf, desc = 'LSP: Find References' })
     end
 })
 
