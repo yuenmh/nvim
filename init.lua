@@ -192,3 +192,6 @@ require 'lualine'.setup {
         },
     },
 }
+
+require 'my.bookmarks'.setup()
+vim.keymap.set('n', '<leader>e', require 'my.bookmarks'.edit_bookmarks, { desc = 'Edit Bookmarks' })
