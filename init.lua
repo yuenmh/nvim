@@ -150,3 +150,25 @@ vim.keymap.set('n', '<leader>pv', require 'oil'.open, { desc = 'Open File Explor
 
 vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
 require 'gitsigns'.setup()
+
+vim.pack.add { gh 'nvim-lualine/lualine.nvim', gh 'nvim-tree/nvim-web-devicons' }
+require 'nvim-web-devicons'.setup()
+require 'lualine'.setup {
+    options = {
+        icons_enabled = true,
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+    },
+    sections = {
+        lualine_a = {
+            { 'mode', fmt = function(mode) return mode:sub(1, 1) end },
+        },
+        lualine_c = {
+            { 'filename', path = 1 --[[Relative path]] },
+        },
+        lualine_x = {
+            'encoding',
+            'filetype',
+        },
+    },
+}
