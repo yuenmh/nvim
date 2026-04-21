@@ -119,6 +119,7 @@ require 'fzf-lua'.setup {
         fzf = {
             ["ctrl-u"] = 'half-page-up',
             ["ctrl-d"] = 'half-page-down',
+            ["ctrl-q"] = 'select-all+accept',
         }
     },
     winopts = {
@@ -128,9 +129,12 @@ require 'fzf-lua'.setup {
         },
     }
 }
-vim.keymap.set('n', '<leader>sf', require 'fzf-lua'.files, { desc = 'Search Files In CWD' })
+vim.keymap.set('n', '<leader>sf', require 'fzf-lua'.files, { desc = 'search files in cwd' })
 vim.keymap.set('n', '<leader>/', require 'fzf-lua'.grep_curbuf, { desc = 'search current buffer' })
-vim.keymap.set('n', '<leader>ds', require 'fzf-lua'.lsp_document_symbols, { desc = 'search current buffer' })
+vim.keymap.set('n', '<leader>ds', require 'fzf-lua'.lsp_document_symbols, { desc = 'current buffer symbols' })
+vim.keymap.set('n', '<leader>sg', require 'fzf-lua'.live_grep, { desc = 'search text in project' })
+vim.keymap.set('n', '<leader>sd', require 'fzf-lua'.diagnostics_document, { desc = 'current buffer diagnostics' })
+vim.keymap.set('n', '<leader>wd', require 'fzf-lua'.diagnostics_workspace, { desc = 'workspace diagnostics' })
 
 vim.pack.add { gh 'j-hui/fidget.nvim' }
 require 'fidget'.setup {
@@ -187,6 +191,14 @@ require 'lualine'.setup {
             { 'filename', path = 1 --[[Relative path]] },
         },
         lualine_x = {
+            {
+                function()
+                    local clients = vim.iter(vim.lsp.get_clients { bufnr = 0 })
+                        :map(function(c) return c.name end)
+                        :totable()
+                    return table.concat(clients, '|')
+                end,
+            },
             'encoding',
             'filetype',
         },
