@@ -129,7 +129,8 @@ require 'fzf-lua'.setup {
         },
     }
 }
-vim.keymap.set('n', '<leader>sf', require 'fzf-lua'.files, { desc = 'search files in cwd' })
+vim.keymap.set('n', '<leader>sf', require 'fzf-lua'.git_files, { desc = 'search git files' })
+vim.keymap.set('n', '<leader>sF', require 'fzf-lua'.files, { desc = 'search files in cwd' })
 vim.keymap.set('n', '<leader>/', require 'fzf-lua'.grep_curbuf, { desc = 'search current buffer' })
 vim.keymap.set('n', '<leader>ds', require 'fzf-lua'.lsp_document_symbols, { desc = 'current buffer symbols' })
 vim.keymap.set('n', '<leader>sg', require 'fzf-lua'.live_grep, { desc = 'search text in project' })
