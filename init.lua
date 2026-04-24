@@ -208,3 +208,8 @@ require 'lualine'.setup {
 
 require 'my.bookmarks'.setup()
 vim.keymap.set('n', '<leader>e', require 'my.bookmarks'.edit_bookmarks, { desc = 'Edit Bookmarks' })
+vim.keymap.set('n', '<leader>a', require 'my.bookmarks'.add_buffer, { desc = 'Add Buffer To Bookmarks' })
+for i = 1, 9 do
+    vim.keymap.set('n', '<leader>' .. i, function() require 'my.bookmarks'.jump_to_boookmark(i) end,
+        { desc = 'Jump To Bookmark ' .. i })
+end
