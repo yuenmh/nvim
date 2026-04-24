@@ -16,6 +16,25 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+vim.opt.cursorline = true
+
+vim.opt.inccommand = 'split'
+
+vim.opt.scrolloff = 10
+
+-- Move selected lines up and down
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected line down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected line up' })
+
+-- Paste without overwriting paste buffer
+vim.keymap.set('v', 'p', 'P')
+
+-- Save undo history
+vim.opt.undofile = true
+
 -- command for when I typo ':w'
 vim.api.nvim_create_user_command('Write', function() vim.cmd.write() end, {})
 
