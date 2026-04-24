@@ -24,6 +24,7 @@ vim.opt.cursorline = true
 vim.opt.inccommand = 'split'
 
 vim.opt.scrolloff = 10
+vim.opt.scroll = 10
 
 -- Move selected lines up and down
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected line down' })
