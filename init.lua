@@ -147,7 +147,8 @@ require 'fzf-lua'.setup {
         preview = {
             border = 'none',
         },
-    }
+    },
+    ui_select = true,
 }
 vim.keymap.set('n', '<leader>sf', require 'fzf-lua'.git_files, { desc = 'search git files' })
 vim.keymap.set('n', '<leader>sF', require 'fzf-lua'.files, { desc = 'search files in cwd' })
