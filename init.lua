@@ -16,6 +16,8 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
+vim.opt.updatetime = 250
+
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
@@ -100,6 +102,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { buffer = event.buf, desc = 'LSP: Go To Definition' })
         vim.keymap.set('n', 'gr', require 'fzf-lua'.lsp_references,
             { buffer = event.buf, desc = 'LSP: Find References' })
+
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.server_capabilities.documentHighlightProvider then
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                buffer = event.buf,
+                callback = vim.lsp.buf.document_highlight,
+            })
+            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                buffer = event.buf,
+                callback = vim.lsp.buf.clear_references,
+            })
+        end
     end
 })
 
