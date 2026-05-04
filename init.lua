@@ -248,3 +248,6 @@ for i = 1, 9 do
     vim.keymap.set('n', '<leader>' .. i, function() require 'my.bookmarks'.jump_to_boookmark(i) end,
         { desc = 'Jump To Bookmark ' .. i })
 end
+
+-- run :TSInstall comment
+vim.api.nvim_set_hl(0, "@comment.todo", { link = "Todo" })
