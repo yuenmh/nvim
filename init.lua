@@ -88,6 +88,12 @@ vim.lsp.config('basedpyright', {
     },
 })
 
+vim.lsp.config('tinymist', {
+    settings = {
+        typstExtraArgs = { '--features=html' },
+    },
+})
+
 require 'my.mason-auto-enable'.setup()
 
 vim.api.nvim_create_autocmd('LspAttach', {
