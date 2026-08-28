@@ -129,24 +129,14 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     end
 })
 
-vim.pack.add { { src = gh 'saghen/blink.cmp', version = 'v1' }, gh 'fang2hou/blink-copilot' }
+vim.pack.add { { src = gh 'saghen/blink.cmp', version = 'v1' } }
 require 'blink.cmp'.setup {
     keymap = {
         preset = 'default',
         ['<Tab>'] = { 'snippet_forward', 'accept', 'fallback' },
     },
-    sources = { default = { 'lsp', 'path', 'buffer', 'copilot' },
-        providers = {
-            copilot = {
-                name = 'copilot',
-                module = 'blink-copilot',
-                score_offset = 100,
-                async = true,
-                opts = {
-                    max_completions = 1,
-                },
-            }
-        },
+    sources = {
+        default = { 'lsp', 'path', 'buffer' },
     },
     completion = {
         documentation = { auto_show = true }
