@@ -133,7 +133,17 @@ vim.pack.add { { src = gh 'saghen/blink.cmp', version = 'v1' } }
 require 'blink.cmp'.setup {
     keymap = {
         preset = 'default',
-        ['<Tab>'] = { 'snippet_forward', 'accept', 'fallback' },
+        ['<Tab>'] = {
+            function(cmp)
+                if cmp.snippet_active() then
+                    return cmp.accept()
+                else
+                    return cmp.select_and_accept()
+                end
+            end,
+            'snippet_forward',
+            'fallback',
+        },
     },
     sources = {
         default = { 'lsp', 'path', 'buffer' },
