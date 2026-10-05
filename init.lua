@@ -247,6 +247,8 @@ require 'lualine'.setup {
     },
 }
 
+vim.pack.add { gh 'chomosuke/typst-preview.nvim' }
+
 require 'my.bookmarks'.setup()
 vim.keymap.set('n', '<leader>e', require 'my.bookmarks'.edit_bookmarks, { desc = 'Edit Bookmarks' })
 vim.keymap.set('n', '<leader>a', require 'my.bookmarks'.add_buffer, { desc = 'Add Buffer To Bookmarks' })
