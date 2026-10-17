@@ -32,6 +32,9 @@ vim.opt.scroll = 10
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected line down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected line up' })
 
+-- banner comment
+vim.api.nvim_create_user_command('BannerFill', 'normal! 80A/<Esc>80|lD', {})
+
 -- Paste without overwriting paste buffer
 vim.keymap.set('v', 'p', 'P')
 
@@ -93,6 +96,8 @@ vim.lsp.config('tinymist', {
         typstExtraArgs = { '--features=html' },
     },
 })
+
+vim.lsp.enable('racket_langserver')
 
 require 'my.mason-auto-enable'.setup()
 
@@ -248,6 +253,9 @@ require 'lualine'.setup {
 }
 
 vim.pack.add { gh 'chomosuke/typst-preview.nvim' }
+
+vim.pack.add { "https://github.com/Julian/lean.nvim" }
+vim.g.lean_config = { mappings = true }
 
 require 'my.bookmarks'.setup()
 vim.keymap.set('n', '<leader>e', require 'my.bookmarks'.edit_bookmarks, { desc = 'Edit Bookmarks' })
