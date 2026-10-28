@@ -8,7 +8,9 @@ local state = {
     config = {
         project_root_files = { ".git" }
     },
-    is_open = false
+    is_open = false,
+    ---@type integer|nil
+    original_winnr = nil,
 }
 
 
@@ -19,6 +21,9 @@ local function open_edit_window(opts)
         vim.notify('bookmarks window is already open', vim.log.levels.WARN)
         return
     end
+
+    state.original_winnr = vim.api.nvim_get_current_win()
+
     state.is_open = true
     local buf = vim.api.nvim_create_buf(false, true)
     vim.api.nvim_buf_set_lines(buf, 0, -1, false, opts.lines)
@@ -73,6 +78,12 @@ local function open_edit_window(opts)
             vim.api.nvim_buf_delete(backdrop_buf, { force = true })
             state.is_open = false
             opts.cb(edited_text)
+
+            -- without this, if we use split screens, the cursor would go back to the first split instead of the one we were last on.
+            -- see: <https://github.com/stevearc/oil.nvim/commit/aea896a880e294c97a7c395dd8a6c89bdc93c644>.
+            if state.original_winnr and vim.api.nvim_win_is_valid(state.original_winnr) then
+                vim.api.nvim_set_current_win(state.original_winnr)
+            end
         end,
     })
 end
