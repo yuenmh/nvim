@@ -179,9 +179,12 @@ vim.keymap.set('n', '<leader>sf', require 'fzf-lua'.git_files, { desc = 'search 
 vim.keymap.set('n', '<leader>sF', require 'fzf-lua'.files, { desc = 'search files in cwd' })
 vim.keymap.set('n', '<leader>/', require 'fzf-lua'.grep_curbuf, { desc = 'search current buffer' })
 vim.keymap.set('n', '<leader>ds', require 'fzf-lua'.lsp_document_symbols, { desc = 'current buffer symbols' })
-vim.keymap.set('n', '<leader>sg', require 'fzf-lua'.live_grep, { desc = 'search text in project' })
-vim.keymap.set('n', '<leader>sd', require 'fzf-lua'.diagnostics_document, { desc = 'current buffer diagnostics' })
+vim.keymap.set('n', '<leader>dd', require 'fzf-lua'.diagnostics_document, { desc = 'current buffer diagnostics' })
+
+vim.keymap.set('n', '<leader>sg', require 'fzf-lua'.live_grep, { desc = 'search text in project (old binding)' })
+vim.keymap.set('n', '<leader>w/', require 'fzf-lua'.live_grep, { desc = 'search text in project' })
 vim.keymap.set('n', '<leader>wd', require 'fzf-lua'.diagnostics_workspace, { desc = 'workspace diagnostics' })
+vim.keymap.set('n', '<leader>ws', require 'fzf-lua'.lsp_workspace_symbols, { desc = 'workspace diagnostics' })
 
 vim.pack.add { gh 'j-hui/fidget.nvim' }
 require 'fidget'.setup {
