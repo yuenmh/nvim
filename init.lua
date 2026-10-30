@@ -69,7 +69,6 @@ vim.pack.add { gh 'neovim/nvim-lspconfig', gh 'mason-org/mason.nvim' }
 require 'mason'.setup()
 
 vim.lsp.enable 'rust_analyzer'
-
 vim.lsp.config('rust_analyzer', {
     settings = {
         ['rust-analyzer'] = {
@@ -98,6 +97,11 @@ vim.lsp.config('tinymist', {
 })
 
 vim.lsp.enable('racket_langserver')
+
+vim.lsp.enable 'hls'
+vim.lsp.config('hls', {
+    filetypes = { 'haskell', 'lhaskell', 'cabal' },
+})
 
 require 'my.mason-auto-enable'.setup()
 
